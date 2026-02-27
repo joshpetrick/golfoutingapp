@@ -82,3 +82,12 @@ stripe listen --forward-to localhost:8080/api/webhooks/stripe
 ## Notes
 - The subscription checkout currently expects a Stripe Price ID from env `STRIPE_SUBSCRIPTION_PRICE_ID` in Stripe account.
 - For a production deployment add refresh tokens, stricter RBAC/authority model, and observability/metrics.
+
+
+## Mobile apps (Android/iOS)
+A cross-platform Expo React Native starter app is available in `mobile-app/` and already wired to these endpoints:
+- `POST /api/auth/login`
+- `GET /api/events`
+- `POST /api/events/{eventId}/registrations`
+
+See `mobile-app/README.md` for setup and emulator/device URL notes.
