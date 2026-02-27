@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golf Outing App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="shell">
+  <header class="hero card">
+    <p class="eyebrow">Golf Outing App</p>
+    <h1>Run and fill your next golf outing with less admin work.</h1>
+    <p class="hero-copy">Create events, publish tee-time windows, and share registration links from one dashboard.</p>
+    <div class="cta-row">
+      <a href="#auth" class="btn btn-primary">Get started</a>
+      <a href="#events" class="btn btn-secondary">Browse events</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="auth" class="grid-2">
+      <article class="card">
+        <h2>Create account</h2>
+        <form id="register-form" class="stack">
+          <label>Name <input required name="name" placeholder="Course manager"></label>
+          <label>Email <input required type="email" name="email" placeholder="name@course.com"></label>
+          <label>Password <input required type="password" minlength="8" name="password" placeholder="Minimum 8 characters"></label>
+          <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>Sign in</h2>
+        <form id="login-form" class="stack">
+          <label>Email <input required type="email" name="email" placeholder="name@course.com"></label>
+          <label>Password <input required type="password" name="password"></label>
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+        <p id="auth-state" class="muted">No active session.</p>
+      </article>
+    </section>
+
+    <section class="card" id="host-tools">
+      <h2>Host tools</h2>
+      <p class="muted">Use a valid token to create courses and events.</p>
+      <div class="stack">
+        <label>JWT token
+          <textarea id="token-input" rows="3" placeholder="Paste token or login to auto-fill"></textarea>
+        </label>
+      </div>
+
+      <div class="grid-2">
+        <form id="course-form" class="stack">
+          <h3>Create course</h3>
+          <label>Course name <input required name="name" placeholder="Pebble Beach"></label>
+          <label>Timezone <input required name="timezone" value="America/New_York"></label>
+          <button class="btn btn-secondary" type="submit">Create course</button>
+        </form>
+
+        <form id="event-form" class="stack">
+          <h3>Create event</h3>
+          <label>Course ID <input required name="courseId" type="number" min="1"></label>
+          <label>Title <input required name="title" placeholder="Saturday Scramble"></label>
+          <label>Description <textarea name="description" rows="2"></textarea></label>
+          <label>Start time <input required type="datetime-local" name="startTime"></label>
+          <label>Signup deadline <input required type="datetime-local" name="signupDeadline"></label>
+          <label>Capacity <input required name="capacity" type="number" min="1" value="72"></label>
+          <label>Price (cents) <input required name="priceCents" type="number" min="0" value="9500"></label>
+          <label>Currency <input required name="currency" value="usd"></label>
+          <button class="btn btn-secondary" type="submit">Create event</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="events" class="card">
+      <div class="section-header">
+        <h2>Published events</h2>
+        <button id="refresh-events" class="btn btn-secondary" type="button">Refresh</button>
+      </div>
+      <div id="events-list" class="event-list"></div>
+    </section>
+
+    <section id="registration" class="card">
+      <h2>Register a golfer</h2>
+      <form id="registration-form" class="grid-2">
+        <label>Event ID <input required name="eventId" type="number" min="1"></label>
+        <label>Spots <input required name="spots" type="number" min="1" value="1"></label>
+        <label>Attendee name <input required name="attendeeName"></label>
+        <label>Attendee email <input required type="email" name="attendeeEmail"></label>
+        <button class="btn btn-primary" type="submit">Create registration</button>
+      </form>
+      <div id="checkout-result" class="muted"></div>
+    </section>
+  </main>
+
+  <p id="flash" aria-live="polite"></p>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>
