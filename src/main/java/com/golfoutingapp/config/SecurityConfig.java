@@ -17,7 +17,7 @@ public class SecurityConfig {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**", "/api/events/**", "/api/webhooks/stripe").permitAll()
+                        .requestMatchers("/", "/index.html", "/styles.css", "/app.js", "/api/auth/**", "/api/events/**", "/api/webhooks/stripe").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
